@@ -1,5 +1,6 @@
-describe('creating server', () => {
-  it('should return a http server', () => {
-    const server = module.require("./index.ts").
-  });
+import * as http from 'http'
+test('server is listening ', async () => {
+    const server = module.require('./index').requesting();
+    expect(server).toBeInstanceOf(http.Server);
+    server.close();
 });

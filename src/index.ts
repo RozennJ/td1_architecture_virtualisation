@@ -1,6 +1,6 @@
 import { resolve } from "path";
 import { Interface } from "readline";
-
+import * as http from 'http'
 /**
  * Mandatory Hello World function.
  * @returns A string which contains "Hello world!"
@@ -51,16 +51,13 @@ async function peupleISysInf () {
  * 
  */
 
-export const requesting = () => {
-  const http = require('http');
-  const server = http.createServer(function (req, res) {
+export const requesting = (): http.Server => {
+  
+
+  return http.createServer( (req, res) => {
   const url = req.url;
   
-  server.on('error', function (e) {
-    // Handle your error here
-    console.log(e); 
-    return e;
-  });
+
 
   if (url == "/api/v1/sysinfo") {
     res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -74,18 +71,7 @@ export const requesting = () => {
     res.end();
   
   }
-  })
-
-  server.listen(3030, (error) => {
-    if (error) {
-      return error;
-    } else {
-      return "Server listening on port 3030";
-    }
-  });
- 
-  
-  
+  }).listen(3030);
 }
 
 export const helloWorld = (): string => {
